@@ -9,6 +9,137 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles for enhanced service page */
+        .service-detail-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        
+        .service-detail-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .service-icon-large {
+            font-size: 60px;
+            color: var(--gold);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+        
+        .feature-list li {
+            color: var(--muted);
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        .process-step {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            height: 100%;
+            border: 1px solid var(--border);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .testimonial-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 30px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--black);
+            margin-right: 15px;
+        }
+        
+        .faq-item {
+            background: var(--card);
+            border-radius: var(--radius-sm);
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--muted);
+            display: none;
+        }
+        
+        .faq-question.active + .faq-answer {
+            display: block;
+        }
+        
+        .faq-toggle {
+            color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+    </style>
 </head>
 
 <body>
@@ -16,7 +147,7 @@
     <header>
         <div class="container header-inner">
             <div class="logo" id="logo">
-                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo">
+                <img src="logo.jpeg" alt="Sine Autos Logo">
                 <span class="logo-text">SINE AUTOS</span>
             </div>
             <nav class="desktop-nav">
@@ -59,96 +190,166 @@
         </div>
     </section>
 
-    <!-- Services Grid -->
-    <section id="services">
+    <!-- Services Overview -->
+    <section id="services-overview">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Our Services</h2>
-                <p class="section-subtitle">Complete automotive solutions tailored to your needs</p>
+                <h2 class="section-title">Our Complete Service Portfolio</h2>
+                <p class="section-subtitle">One-stop solution for all your automotive needs with global coverage and local expertise</p>
             </div>
-            <div class="services-grid">
-                <div class="card service-card" id="vehicle-sales" onclick="openServiceModal('vehicle-sales')">
-                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
-                        <i class="fas fa-car"></i>
+            
+            <!-- Vehicle Sales Service -->
+            <div class="service-detail-card" id="vehicle-sales">
+                <div style="display: flex; align-items: flex-start; gap: 40px; margin-bottom: 30px;">
+                    <div style="flex-shrink: 0;">
+                        <div class="service-icon-large">
+                            <i class="fas fa-car"></i>
+                        </div>
                     </div>
-                    <h3>Vehicle Sales</h3>
-                    <p style="color: var(--muted); margin-bottom: 20px;">Vintage classics, pre-owned, and brand-new vehicles from our global network.</p>
-                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
-                        <li>New & Pre-owned Luxury Vehicles</li>
-                        <li>Vintage & Classic Cars</li>
-                        <li>Custom Sourcing Service</li>
-                        <li>Vehicle Inspection & Verification</li>
-                    </ul>
+                    <div style="flex-grow: 1;">
+                        <h2 style="color: var(--gold); margin-bottom: 15px;">Vehicle Sales</h2>
+                        <p style="color: var(--muted); font-size: 18px; line-height: 1.6;">
+                            Complete vehicle acquisition service from vintage classics to modern luxury. We source, inspect, and deliver vehicles worldwide.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="card service-card" id="luxury-sourcing" onclick="openServiceModal('luxury-sourcing')">
-                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
-                        <i class="fas fa-search-dollar"></i>
+                <div class="grid grid-2" style="gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">What We Offer</h3>
+                        <ul class="feature-list">
+                            <li>New & Pre-owned Luxury Vehicles</li>
+                            <li>Vintage & Classic Car Acquisition</li>
+                            <li>Global Vehicle Sourcing Network</li>
+                            <li>Comprehensive Vehicle Inspection</li>
+                            <li>Certified Pre-owned Program</li>
+                            <li>Custom Vehicle Specifications</li>
+                        </ul>
                     </div>
-                    <h3>Luxury Sourcing</h3>
-                    <p style="color: var(--muted); margin-bottom: 20px;">Rare and high-end vehicles through our exclusive global network.</p>
-                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
-                        <li>Exotic & Limited Edition Vehicles</li>
-                        <li>Global Network Access</li>
-                        <li>Custom Build Requests</li>
-                        <li>Investment Grade Vehicles</li>
-                    </ul>
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">Why Choose Us</h3>
+                        <ul class="feature-list">
+                            <li>20+ Years Industry Experience</li>
+                            <li>Global Network of Dealers</li>
+                            <li>Transparent Pricing & Fees</li>
+                            <li>Complete Documentation</li>
+                            <li>Post-Purchase Support</li>
+                            <li>Satisfaction Guarantee</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="card service-card" id="shipping-logistics" onclick="openServiceModal('shipping-logistics')">
-                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
-                        <i class="fas fa-shipping-fast"></i>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-gold" onclick="openServiceModal('vehicle-sales')">
+                        <i class="fas fa-car"></i> Start Vehicle Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Luxury Sourcing Service -->
+            <div class="service-detail-card" id="luxury-sourcing">
+                <div style="display: flex; align-items: flex-start; gap: 40px; margin-bottom: 30px;">
+                    <div style="flex-shrink: 0;">
+                        <div class="service-icon-large">
+                            <i class="fas fa-search-dollar"></i>
+                        </div>
                     </div>
-                    <h3>Shipping & Logistics</h3>
-                    <p style="color: var(--muted); margin-bottom: 20px;">International transport handled end-to-end with customs clearance.</p>
-                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
-                        <li>Door-to-Door Delivery</li>
-                        <li>Customs Clearance</li>
-                        <li>Insurance & Documentation</li>
-                        <li>Real-time Tracking</li>
-                    </ul>
+                    <div style="flex-grow: 1;">
+                        <h2 style="color: var(--gold); margin-bottom: 15px;">Luxury & Exotic Vehicle Sourcing</h2>
+                        <p style="color: var(--muted); font-size: 18px; line-height: 1.6;">
+                            Exclusive access to rare, limited edition, and high-end vehicles through our global luxury network.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="card service-card" id="auto-auctions" onclick="openServiceModal('auto-auctions')">
-                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
-                        <i class="fas fa-gavel"></i>
+                <div class="grid grid-2" style="gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">Specializations</h3>
+                        <ul class="feature-list">
+                            <li>Limited Edition Supercars</li>
+                            <li>Rare Vintage Collections</li>
+                            <li>Custom Coach-Built Vehicles</li>
+                            <li>Investment-Grade Automobiles</li>
+                            <li>Celebrity & Show Cars</li>
+                            <li>Concept & Prototype Vehicles</li>
+                        </ul>
                     </div>
-                    <h3>Auto Auctions</h3>
-                    <p style="color: var(--muted); margin-bottom: 20px;">Professional auction representation and bidding services worldwide.</p>
-                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
-                        <li>Auction Representation</li>
-                        <li>Bidding Strategy</li>
-                        <li>Vehicle Inspection</li>
-                        <li>Post-Auction Services</li>
-                    </ul>
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">Our Network</h3>
+                        <ul class="feature-list">
+                            <li>Exclusive Dealer Relationships</li>
+                            <li>Auction House Partnerships</li>
+                            <li>Private Collector Network</li>
+                            <li>Manufacturer Direct Access</li>
+                            <li>Global Luxury Car Clubs</li>
+                            <li>Custom Build Specialists</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="card service-card" id="car-rentals" onclick="openServiceModal('car-rentals')">
-                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
-                        <i class="fas fa-key"></i>
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-gold" onclick="openServiceModal('luxury-sourcing')">
+                        <i class="fas fa-search-dollar"></i> Request Luxury Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Shipping & Logistics Service -->
+            <div class="service-detail-card" id="shipping-logistics">
+                <div style="display: flex; align-items: flex-start; gap: 40px; margin-bottom: 30px;">
+                    <div style="flex-shrink: 0;">
+                        <div class="service-icon-large">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
                     </div>
-                    <h3>Car Rentals</h3>
-                    <p style="color: var(--muted); margin-bottom: 20px;">Short-term and long-term luxury rentals for any occasion.</p>
-                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
-                        <li>Luxury Vehicle Rentals</li>
-                        <li>Short & Long-term Leases</li>
-                        <li>Chauffeur Services</li>
-                        <li>Corporate Fleet Management</li>
-                    </ul>
+                    <div style="flex-grow: 1;">
+                        <h2 style="color: var(--gold); margin-bottom: 15px;">Global Shipping & Logistics</h2>
+                        <p style="color: var(--muted); font-size: 18px; line-height: 1.6;">
+                            End-to-end international vehicle transportation with complete customs clearance and documentation.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="card service-card" id="concierge-service" onclick="openServiceModal('concierge-service')">
-                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
-                        <i class="fas fa-handshake"></i>
+                <div class="grid grid-3" style="gap: 30px;">
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">Shipping Methods</h3>
+                        <ul class="feature-list">
+                            <li>Container Shipping</li>
+                            <li>Ro-Ro (Roll-on/Roll-off)</li>
+                            <li>Air Freight Services</li>
+                            <li>Enclosed Transport</li>
+                            <li>Express Delivery</li>
+                            <li>Multi-Vehicle Transport</li>
+                        </ul>
                     </div>
-                    <h3>Concierge Service</h3>
-                    <p style="color: var(--muted); margin-bottom: 20px;">Personalized automotive consulting and complete vehicle management.</p>
-                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
-                        <li>Complete Vehicle Management</li>
-                        <li>Maintenance Scheduling</li>
-                        <li>Insurance Coordination</li>
-                        <li>Personal Automotive Assistant</li>
-                    </ul>
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">Documentation</h3>
+                        <ul class="feature-list">
+                            <li>Customs Clearance</li>
+                            <li>Import/Export Licenses</li>
+                            <li>Insurance Processing</li>
+                            <li>Bill of Lading</li>
+                            <li>Certificate of Origin</li>
+                            <li>Tax & Duty Calculations</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--text); margin-bottom: 15px;">Tracking & Support</h3>
+                        <ul class="feature-list">
+                            <li>Real-Time GPS Tracking</li>
+                            <li>24/7 Customer Support</li>
+                            <li>Port-to-Door Delivery</li>
+                            <li>Damage Protection</li>
+                            <li>Storage Solutions</li>
+                            <li>Emergency Assistance</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button class="btn btn-gold" onclick="openServiceModal('shipping-logistics')">
+                        <i class="fas fa-shipping-fast"></i> Get Shipping Quote
+                    </button>
                 </div>
             </div>
         </div>
@@ -158,29 +359,156 @@
     <section style="background: var(--dark);">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">How It Works</h2>
-                <p class="section-subtitle">Simple, transparent process from start to finish</p>
+                <h2 class="section-title">Our 5-Step Process</h2>
+                <p class="section-subtitle">Simple, transparent process from consultation to delivery</p>
             </div>
-            <div class="grid grid-4">
-                <div class="card" style="text-align: center;">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">1</div>
+            <div class="grid grid-5">
+                <div class="process-step">
+                    <div class="step-number">1</div>
                     <h3>Consultation</h3>
-                    <p>Tell us your needs and preferences</p>
+                    <p>Detailed discussion of your needs, preferences, and budget</p>
                 </div>
-                <div class="card" style="text-align: center;">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">2</div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
                     <h3>Sourcing</h3>
-                    <p>We find the perfect vehicle for you</p>
+                    <p>Global search for the perfect vehicle matching your criteria</p>
                 </div>
-                <div class="card" style="text-align: center;">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">3</div>
-                    <h3>Verification</h3>
-                    <p>Complete inspection and documentation</p>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Inspection</h3>
+                    <p>Comprehensive vehicle inspection and verification</p>
                 </div>
-                <div class="card" style="text-align: center;">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">4</div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Purchase</h3>
+                    <p>Secure transaction with complete documentation</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
                     <h3>Delivery</h3>
-                    <p>Shipping and delivery to your location</p>
+                    <p>Shipping and delivery to your specified location</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Testimonials</h2>
+                <p class="section-subtitle">What our clients say about our services</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="testimonial-card">
+                    <p>"Sine Autos found me a perfect Mercedes G-Wagon that was exactly what I wanted. Their shipping service to Nigeria was seamless."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AJ</div>
+                        <div>
+                            <h4 style="color: var(--text); margin-bottom: 5px;">Adebayo Johnson</h4>
+                            <p style="color: var(--muted); font-size: 14px;">Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"As a collector, I needed a rare Porsche 911. Their luxury sourcing team found exactly what I wanted within 2 weeks!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div>
+                            <h4 style="color: var(--text); margin-bottom: 5px;">Michael Roberts</h4>
+                            <p style="color: var(--muted); font-size: 14px;">Dubai, UAE</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The shipping logistics were handled perfectly. My Range Rover arrived in perfect condition with all documents ready."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SO</div>
+                        <div>
+                            <h4 style="color: var(--text); margin-bottom: 5px;">Sarah Okafor</h4>
+                            <p style="color: var(--muted); font-size: 14px;">Abuja, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="background: var(--dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Get answers to common questions about our services</p>
+            </div>
+            <div class="faq-section" style="max-width: 800px; margin: 0 auto;">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How long does the vehicle sourcing process take?
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Typically 2-4 weeks for standard vehicles, 4-8 weeks for rare or luxury models. We provide regular updates throughout the process.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What countries do you ship to?
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        We ship worldwide to over 50 countries including Nigeria, Ghana, UAE, USA, UK, Canada, and most European countries.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Do you handle customs and import duties?
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we handle all customs clearance, import duties, and documentation. We provide a complete breakdown of all costs upfront.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What is your vehicle inspection process?
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        Each vehicle undergoes a 150-point inspection covering mechanical, electrical, cosmetic, and performance aspects. We provide a detailed inspection report.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Can I test drive a vehicle before purchase?
+                        <span class="faq-toggle"><i class="fas fa-plus"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        For local purchases, yes. For international purchases, we provide comprehensive video walkarounds and independent inspection reports.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section>
+        <div class="container">
+            <div style="text-align: center; padding: 60px 20px; background: var(--card); border-radius: var(--radius);">
+                <h2 style="font-size: 36px; margin-bottom: 20px;">Ready to Find Your Dream Vehicle?</h2>
+                <p style="color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto 40px;">
+                    Contact us today and let our experts help you find the perfect vehicle with our complete end-to-end service.
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-gold" onclick="openModal('general')">
+                        <i class="fas fa-car"></i> Start Your Search
+                    </button>
+                    <button class="btn btn-outline" onclick="openServiceModal('concierge-service')">
+                        <i class="fas fa-handshake"></i> Concierge Service
+                    </button>
+                    <a href="tel:+1234567890" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
                 </div>
             </div>
         </div>
@@ -190,7 +518,7 @@
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
-                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo" class="footer-logo">
+                <img src="logo.jpeg" alt="Sine Autos Logo" class="footer-logo">
                 <h2 class="logo-text" style="font-size: 32px; margin-bottom: 20px;">SINE AUTOS</h2>
                 <p>Vintage to Modern — Your Automotive Hub</p>
                 <p style="margin-top: 10px; color: var(--gold); font-weight: 500;">
@@ -255,5 +583,34 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // FAQ Toggle Functionality
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+        
+        // Grid-5 layout for process steps
+        const style = document.createElement('style');
+        style.textContent = `
+            .grid-5 {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+            
+            @media (max-width: 1024px) {
+                .grid-5 {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            
+            @media (max-width: 768px) {
+                .grid-5 {
+                    grid-template-columns: 1fr;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
