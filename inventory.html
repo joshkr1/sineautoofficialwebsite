@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SINE AUTOS | Premium Inventory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo" id="logo">
+                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo">
+                <span class="logo-text">SINE AUTOS</span>
+            </div>
+            <nav class="desktop-nav">
+                <a href="index.html">Home</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="services.html">Services</a>
+                <a href="ceo.html">CEO</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="toggleMobileNav()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html" onclick="toggleMobileNav()">Home</a>
+        <a href="inventory.html" onclick="toggleMobileNav()">Inventory</a>
+        <a href="services.html" onclick="toggleMobileNav()">Services</a>
+        <a href="ceo.html" onclick="toggleMobileNav()">CEO</a>
+        <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+    </nav>
+
+    <!-- Inventory Hero -->
+    <section class="hero" style="min-height: 60vh; padding-top: 140px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Inventory</h1>
+                <h2>Browse Our Curated Collection</h2>
+                <p>Discover our extensive collection of luxury vehicles, vintage classics, and modern marvels. Each vehicle is carefully selected for quality, performance, and value.</p>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <button class="btn btn-gold" onclick="openModal('general')">
+                        <i class="fas fa-car"></i> Request Specific Model
+                    </button>
+                    <button class="btn btn-outline" onclick="openServiceModal('shipping-logistics')">
+                        <i class="fas fa-globe"></i> Import Inquiry
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventory Grid (Compact for many cars) -->
+    <section id="inventory">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Available Vehicles</h2>
+                <p class="section-subtitle">Browse our collection of premium vehicles available for purchase or import</p>
+            </div>
+            
+            <!-- Filters -->
+            <div style="display: flex; gap: 20px; margin-bottom: 40px; flex-wrap: wrap; justify-content: center;">
+                <select class="btn-outline" style="padding: 12px 24px; border-radius: 50px; background: transparent; color: var(--gold); border: 2px solid var(--gold);">
+                    <option>All Categories</option>
+                    <option>SUVs</option>
+                    <option>Sedans</option>
+                    <option>Sports Cars</option>
+                    <option>Vintage Classics</option>
+                </select>
+                <select class="btn-outline" style="padding: 12px 24px; border-radius: 50px; background: transparent; color: var(--gold); border: 2px solid var(--gold);">
+                    <option>Price Range</option>
+                    <option>Under $50,000</option>
+                    <option>$50,000 - $100,000</option>
+                    <option>$100,000 - $200,000</option>
+                    <option>$200,000+</option>
+                </select>
+                <select class="btn-outline" style="padding: 12px 24px; border-radius: 50px; background: transparent; color: var(--gold); border: 2px solid var(--gold);">
+                    <option>Brand</option>
+                    <option>Mercedes-Benz</option>
+                    <option>BMW</option>
+                    <option>Audi</option>
+                    <option>Porsche</option>
+                    <option>Range Rover</option>
+                </select>
+            </div>
+            
+            <!-- Compact Inventory Grid (20+ cars) -->
+            <div class="inventory-grid compact">
+                <!-- Car 1 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes-Benz">
+                    <div class="inventory-content">
+                        <h3>2023 Mercedes-Benz GLE 63 S</h3>
+                        <div class="price">$125,500</div>
+                        <p>Automatic • Petrol • 8,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes-Benz GLE 63 S')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 2 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Porsche 911">
+                    <div class="inventory-content">
+                        <h3>2022 Porsche 911 Turbo S</h3>
+                        <div class="price">$215,000</div>
+                        <p>Automatic • Petrol • 4,500 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2022 Porsche 911 Turbo S')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 3 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Range Rover">
+                    <div class="inventory-content">
+                        <h3>2023 Range Rover Autobiography</h3>
+                        <div class="price">$185,000</div>
+                        <p>Automatic • Diesel • 3,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Range Rover Autobiography')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 4 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BMW">
+                    <div class="inventory-content">
+                        <h3>2023 BMW M8 Competition</h3>
+                        <div class="price">$165,000</div>
+                        <p>Automatic • Petrol • 6,500 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 BMW M8 Competition')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 5 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audi">
+                    <div class="inventory-content">
+                        <h3>2023 Audi RS7 Sportback</h3>
+                        <div class="price">$145,000</div>
+                        <p>Automatic • Petrol • 7,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Audi RS7 Sportback')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 6 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1563720223486-3298c64da21f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lexus">
+                    <div class="inventory-content">
+                        <h3>2023 Lexus LX 600</h3>
+                        <div class="price">$135,000</div>
+                        <p>Automatic • Petrol • 5,800 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Lexus LX 600')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add more cars here to reach 20+ -->
+                <!-- Car 7 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes S-Class">
+                    <div class="inventory-content">
+                        <h3>2023 Mercedes S-Class</h3>
+                        <div class="price">$155,000</div>
+                        <p>Automatic • Petrol • 4,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes S-Class')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 8 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Porsche Cayenne">
+                    <div class="inventory-content">
+                        <h3>2023 Porsche Cayenne Turbo</h3>
+                        <div class="price">$175,000</div>
+                        <p>Automatic • Petrol • 3,900 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Porsche Cayenne Turbo')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 9 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1566472604986-7f5c52d66d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tesla">
+                    <div class="inventory-content">
+                        <h3>2023 Tesla Model X Plaid</h3>
+                        <div class="price">$145,000</div>
+                        <p>Electric • 3,100 miles • 6-seater</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Tesla Model X Plaid')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 10 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1556189250-72ba954cfc2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Land Rover">
+                    <div class="inventory-content">
+                        <h3>2023 Land Rover Defender</h3>
+                        <div class="price">$125,000</div>
+                        <p>Automatic • Diesel • 8,500 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Land Rover Defender')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 11 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1593941707882-a5bba5338fe2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BMW X7">
+                    <div class="inventory-content">
+                        <h3>2023 BMW X7 M60i</h3>
+                        <div class="price">$135,000</div>
+                        <p>Automatic • Petrol • 5,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 BMW X7 M60i')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 12 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audi Q8">
+                    <div class="inventory-content">
+                        <h3>2023 Audi Q8 Sportback</h3>
+                        <div class="price">$115,000</div>
+                        <p>Automatic • Petrol • 7,800 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Audi Q8 Sportback')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 13 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes G-Wagon">
+                    <div class="inventory-content">
+                        <h3>2023 Mercedes G63 AMG</h3>
+                        <div class="price">$285,000</div>
+                        <p>Automatic • Petrol • 2,800 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes G63 AMG')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 14 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chevrolet Corvette">
+                    <div class="inventory-content">
+                        <h3>2023 Chevrolet Corvette</h3>
+                        <div class="price">$95,000</div>
+                        <p>Automatic • Petrol • 3,500 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Chevrolet Corvette')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 15 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes E-Class">
+                    <div class="inventory-content">
+                        <h3>2023 Mercedes E-Class</h3>
+                        <div class="price">$85,000</div>
+                        <p>Automatic • Petrol • 9,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes E-Class')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 16 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BMW 5 Series">
+                    <div class="inventory-content">
+                        <h3>2023 BMW 530i</h3>
+                        <div class="price">$75,000</div>
+                        <p>Automatic • Petrol • 10,500 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 BMW 530i')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 17 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1593941707882-a5bba5338fe2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BMW 3 Series">
+                    <div class="inventory-content">
+                        <h3>2023 BMW 330i</h3>
+                        <div class="price">$55,000</div>
+                        <p>Automatic • Petrol • 12,200 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 BMW 330i')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 18 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes C-Class">
+                    <div class="inventory-content">
+                        <h3>2023 Mercedes C300</h3>
+                        <div class="price">$65,000</div>
+                        <p>Automatic • Petrol • 11,800 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes C300')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 19 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audi A4">
+                    <div class="inventory-content">
+                        <h3>2023 Audi A4</h3>
+                        <div class="price">$58,000</div>
+                        <p>Automatic • Petrol • 13,500 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Audi A4')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Car 20 -->
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audi A6">
+                    <div class="inventory-content">
+                        <h3>2023 Audi A6</h3>
+                        <div class="price">$72,000</div>
+                        <p>Automatic • Petrol • 9,800 miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Audi A6')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <button class="btn btn-outline" onclick="loadMoreVehicles()">
+                    <i class="fas fa-plus-circle"></i> Load More Vehicles
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo" class="footer-logo">
+                <h2 class="logo-text" style="font-size: 32px; margin-bottom: 20px;">SINE AUTOS</h2>
+                <p>Vintage to Modern — Your Automotive Hub</p>
+                <p style="margin-top: 10px; color: var(--gold); font-weight: 500;">
+                    <i class="fas fa-map-marker-alt"></i> 49, Ogba Road, Agege Lagos
+                </p>
+                <p style="margin-top: 10px;">Connecting you to exceptional vehicles with global reach and trusted service.</p>
+                
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-contact">
+                    <a href="tel:+1234567890">
+                        <i class="fas fa-phone"></i> +1 (234) 567-890
+                    </a>
+                    <a href="mailto:info@sineautos.com">
+                        <i class="fas fa-envelope"></i> info@sineautos.com
+                    </a>
+                    <a href="https://wa.me/1234567890" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+                
+                <div style="margin: 40px 0;">
+                    <button class="btn btn-gold" onclick="openModal('general')" style="margin: 0 10px;">
+                        <i class="fas fa-car"></i> Contact for More Info
+                    </button>
+                    <button class="btn btn-outline" onclick="openServiceModal('shipping-logistics')" style="margin: 0 10px;">
+                        <i class="fas fa-globe"></i> Shipping Quote
+                    </button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 SINE AUTOS. All rights reserved.</p>
+                <p>Built with excellence by CCAWSC</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <div id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
