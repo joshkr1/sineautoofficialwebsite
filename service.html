@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SINE AUTOS | Automotive Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo" id="logo">
+                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo">
+                <span class="logo-text">SINE AUTOS</span>
+            </div>
+            <nav class="desktop-nav">
+                <a href="index.html">Home</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="services.html">Services</a>
+                <a href="ceo.html">CEO</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="toggleMobileNav()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html" onclick="toggleMobileNav()">Home</a>
+        <a href="inventory.html" onclick="toggleMobileNav()">Inventory</a>
+        <a href="services.html" onclick="toggleMobileNav()">Services</a>
+        <a href="ceo.html" onclick="toggleMobileNav()">CEO</a>
+        <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+    </nav>
+
+    <!-- Services Hero -->
+    <section class="hero" style="min-height: 60vh; padding-top: 140px;">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Comprehensive Automotive Services</h1>
+                <h2>End-to-End Solutions for Every Need</h2>
+                <p>From vehicle sourcing to shipping, auctions to rentals, we provide complete automotive solutions with global reach and local expertise.</p>
+                <button class="btn btn-gold" onclick="openModal('general')">
+                    <i class="fas fa-paper-plane"></i>Get Started
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Complete automotive solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="card service-card" id="vehicle-sales" onclick="openServiceModal('vehicle-sales')">
+                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Vehicle Sales</h3>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Vintage classics, pre-owned, and brand-new vehicles from our global network.</p>
+                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
+                        <li>New & Pre-owned Luxury Vehicles</li>
+                        <li>Vintage & Classic Cars</li>
+                        <li>Custom Sourcing Service</li>
+                        <li>Vehicle Inspection & Verification</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-card" id="luxury-sourcing" onclick="openServiceModal('luxury-sourcing')">
+                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Luxury Sourcing</h3>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Rare and high-end vehicles through our exclusive global network.</p>
+                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
+                        <li>Exotic & Limited Edition Vehicles</li>
+                        <li>Global Network Access</li>
+                        <li>Custom Build Requests</li>
+                        <li>Investment Grade Vehicles</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-card" id="shipping-logistics" onclick="openServiceModal('shipping-logistics')">
+                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Shipping & Logistics</h3>
+                    <p style="color: var(--muted); margin-bottom: 20px;">International transport handled end-to-end with customs clearance.</p>
+                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
+                        <li>Door-to-Door Delivery</li>
+                        <li>Customs Clearance</li>
+                        <li>Insurance & Documentation</li>
+                        <li>Real-time Tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-card" id="auto-auctions" onclick="openServiceModal('auto-auctions')">
+                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Auto Auctions</h3>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Professional auction representation and bidding services worldwide.</p>
+                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
+                        <li>Auction Representation</li>
+                        <li>Bidding Strategy</li>
+                        <li>Vehicle Inspection</li>
+                        <li>Post-Auction Services</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-card" id="car-rentals" onclick="openServiceModal('car-rentals')">
+                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Car Rentals</h3>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Short-term and long-term luxury rentals for any occasion.</p>
+                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
+                        <li>Luxury Vehicle Rentals</li>
+                        <li>Short & Long-term Leases</li>
+                        <li>Chauffeur Services</li>
+                        <li>Corporate Fleet Management</li>
+                    </ul>
+                </div>
+                
+                <div class="card service-card" id="concierge-service" onclick="openServiceModal('concierge-service')">
+                    <div style="font-size: 50px; color: var(--gold); margin-bottom: 25px;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Concierge Service</h3>
+                    <p style="color: var(--muted); margin-bottom: 20px;">Personalized automotive consulting and complete vehicle management.</p>
+                    <ul style="text-align: left; color: var(--muted); font-size: 14px; line-height: 1.8;">
+                        <li>Complete Vehicle Management</li>
+                        <li>Maintenance Scheduling</li>
+                        <li>Insurance Coordination</li>
+                        <li>Personal Automotive Assistant</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section style="background: var(--dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Simple, transparent process from start to finish</p>
+            </div>
+            <div class="grid grid-4">
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">1</div>
+                    <h3>Consultation</h3>
+                    <p>Tell us your needs and preferences</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">2</div>
+                    <h3>Sourcing</h3>
+                    <p>We find the perfect vehicle for you</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">3</div>
+                    <h3>Verification</h3>
+                    <p>Complete inspection and documentation</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">4</div>
+                    <h3>Delivery</h3>
+                    <p>Shipping and delivery to your location</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo" class="footer-logo">
+                <h2 class="logo-text" style="font-size: 32px; margin-bottom: 20px;">SINE AUTOS</h2>
+                <p>Vintage to Modern — Your Automotive Hub</p>
+                <p style="margin-top: 10px; color: var(--gold); font-weight: 500;">
+                    <i class="fas fa-map-marker-alt"></i> 49, Ogba Road, Agege Lagos
+                </p>
+                <p style="margin-top: 10px;">Connecting you to exceptional vehicles with global reach and trusted service.</p>
+                
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-contact">
+                    <a href="tel:+1234567890">
+                        <i class="fas fa-phone"></i> +1 (234) 567-890
+                    </a>
+                    <a href="mailto:info@sineautos.com">
+                        <i class="fas fa-envelope"></i> info@sineautos.com
+                    </a>
+                    <a href="https://wa.me/1234567890" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+                
+                <div style="margin: 40px 0;">
+                    <button class="btn btn-gold" onclick="openModal('general')" style="margin: 0 10px;">
+                        <i class="fas fa-car"></i> Get Started
+                    </button>
+                    <button class="btn btn-outline" onclick="openServiceModal('concierge-service')" style="margin: 0 10px;">
+                        <i class="fas fa-handshake"></i> Concierge Service
+                    </button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 SINE AUTOS. All rights reserved.</p>
+                <p>Built with excellence by CCAWSC</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <div id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
