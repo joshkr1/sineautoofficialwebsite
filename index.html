@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SINE AUTOS | Vintage to Modern — Your Automotive Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo" id="logo">
+                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo">
+                <span class="logo-text">SINE AUTOS</span>
+            </div>
+            <nav class="desktop-nav">
+                <a href="index.html">Home</a>
+                <a href="inventory.html">Inventory</a>
+                <a href="services.html">Services</a>
+                <a href="ceo.html">CEO</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-close" onclick="toggleMobileNav()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html" onclick="toggleMobileNav()">Home</a>
+        <a href="inventory.html" onclick="toggleMobileNav()">Inventory</a>
+        <a href="services.html" onclick="toggleMobileNav()">Services</a>
+        <a href="ceo.html" onclick="toggleMobileNav()">CEO</a>
+        <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Drive Excellence.<br>Anywhere in the World.</h1>
+                <h2>Vintage to Modern — Your Automotive Hub</h2>
+                <p>At Sine Autos, we connect you to exceptional vehicles from timeless classics to modern luxury. Whether you're buying, selling, shipping, renting, or bidding at auction, we deliver a seamless automotive experience built on trust, quality, and global reach.</p>
+                <button class="btn btn-gold" onclick="openModal('general')">
+                    <i class="fas fa-paper-plane"></i>Contact Us
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section (Now Home Content) -->
+    <section id="mission">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Commitment</h2>
+                <p class="section-subtitle">Building trust and excellence in the global automotive industry</p>
+            </div>
+            <div class="grid grid-3">
+                <div class="card mission-card">
+                    <h3>Mission</h3>
+                    <p>To deliver reliable, high-quality vehicles from vintage classics to modern luxury, while providing seamless sales, shipping, auctions, and rental services with integrity, transparency, and customer satisfaction worldwide.</p>
+                </div>
+                <div class="card mission-card">
+                    <h3>Vision</h3>
+                    <p>To become a trusted global automotive hub connecting people to exceptional vehicles across generations, redefining convenience, excellence, and trust in the car industry.</p>
+                </div>
+                <div class="card mission-card">
+                    <h3>Our Value</h3>
+                    <p><strong>One Brand. Every Automotive Solution. Worldwide.</strong><br><br>
+                    We simplify the car ownership journey by offering end-to-end services under one trusted name.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Preview Section -->
+    <section id="services-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">End-to-end automotive solutions with global reach and local expertise</p>
+            </div>
+            <div class="services-grid">
+                <div class="card service-card" onclick="window.location.href='services.html#vehicle-sales'">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Vehicle Sales</h3>
+                    <p style="color: var(--muted);">Vintage classics, pre-owned, and brand-new vehicles</p>
+                </div>
+                <div class="card service-card" onclick="window.location.href='services.html#luxury-sourcing'">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Luxury Sourcing</h3>
+                    <p style="color: var(--muted);">Rare and high-end vehicles through our global network</p>
+                </div>
+                <div class="card service-card" onclick="window.location.href='services.html#shipping-logistics'">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3>Shipping & Logistics</h3>
+                    <p style="color: var(--muted);">International transport handled end-to-end</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="services.html" class="btn btn-outline">
+                    <i class="fas fa-eye"></i> View All Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inventory Preview Section -->
+    <section id="inventory-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Premium Inventory</h2>
+                <p class="section-subtitle">Curated selection of luxury vehicles available for immediate purchase or import</p>
+            </div>
+            <div class="inventory-grid">
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes-Benz">
+                    <div class="inventory-content">
+                        <h3>2023 Mercedes-Benz GLE 63 S</h3>
+                        <div class="price">$125,500</div>
+                        <p>Automatic • Petrol • 8,200 miles • AMG Performance Package</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes-Benz GLE 63 S')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="openModal('inspection','Inspection: 2023 Mercedes-Benz GLE 63 S')">
+                                <i class="fas fa-calendar-check"></i> Inspect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card inventory-card">
+                    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Porsche 911">
+                    <div class="inventory-content">
+                        <h3>2022 Porsche 911 Turbo S</h3>
+                        <div class="price">$215,000</div>
+                        <p>Automatic • Petrol • 4,500 miles • Guards Red • Full Carbon</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2022 Porsche 911 Turbo S')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="openModal('inspection','Inspection: 2022 Porsche 911 Turbo S')">
+                                <i class="fas fa-calendar-check"></i> Inspect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="inventory.html" class="btn btn-outline">
+                    <i class="fas fa-car"></i> View Full Inventory
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <img src="CEO LOGO.jpeg" alt="Sine Autos Logo" class="footer-logo">
+                <h2 class="logo-text" style="font-size: 32px; margin-bottom: 20px;">SINE AUTOS</h2>
+                <p>Vintage to Modern — Your Automotive Hub</p>
+                <p style="margin-top: 10px; color: var(--gold); font-weight: 500;">
+                    <i class="fas fa-map-marker-alt"></i> 49, Ogba Road, Agege Lagos
+                </p>
+                <p style="margin-top: 10px;">Connecting you to exceptional vehicles with global reach and trusted service.</p>
+                
+                <div class="social-media">
+                    <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="social-icon" aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                
+                <div class="footer-contact">
+                    <a href="tel:+1234567890">
+                        <i class="fas fa-phone"></i> +1 (234) 567-890
+                    </a>
+                    <a href="mailto:info@sineautos.com">
+                        <i class="fas fa-envelope"></i> info@sineautos.com
+                    </a>
+                    <a href="https://wa.me/1234567890" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+                
+                <div style="margin: 40px 0;">
+                    <button class="btn btn-gold" onclick="openModal('general')" style="margin: 0 10px;">
+                        <i class="fas fa-car"></i> Browse Inventory
+                    </button>
+                    <button class="btn btn-outline" onclick="openServiceModal('shipping-logistics')" style="margin: 0 10px;">
+                        <i class="fas fa-globe"></i> Import Inquiry
+                    </button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 SINE AUTOS. All rights reserved.</p>
+                <p>Built with excellence by CCAWSC</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Structure -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close" onclick="closeModal()">&times;</button>
+            <div id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
