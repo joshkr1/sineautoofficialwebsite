@@ -59,7 +59,7 @@
         </div>
     </section>
 
-    <!-- Mission Section (Now Home Content) -->
+    <!-- Mission Section -->
     <section id="mission">
         <div class="container">
             <div class="section-header">
@@ -84,35 +84,15 @@
         </div>
     </section>
 
-    <!-- Services Preview Section -->
+    <!-- Services Preview Section (DYNAMIC) -->
     <section id="services-preview">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Our Services</h2>
                 <p class="section-subtitle">End-to-end automotive solutions with global reach and local expertise</p>
             </div>
-            <div class="services-grid">
-                <div class="card service-card" onclick="window.location.href='services.html#vehicle-sales'">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <h3>Vehicle Sales</h3>
-                    <p style="color: var(--muted);">Vintage classics, pre-owned, and brand-new vehicles</p>
-                </div>
-                <div class="card service-card" onclick="window.location.href='services.html#luxury-sourcing'">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
-                        <i class="fas fa-search-dollar"></i>
-                    </div>
-                    <h3>Luxury Sourcing</h3>
-                    <p style="color: var(--muted);">Rare and high-end vehicles through our global network</p>
-                </div>
-                <div class="card service-card" onclick="window.location.href='services.html#shipping-logistics'">
-                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <h3>Shipping & Logistics</h3>
-                    <p style="color: var(--muted);">International transport handled end-to-end</p>
-                </div>
+            <div class="services-grid" id="featured-services-grid">
+                <!-- Services will be loaded here from backend -->
             </div>
             <div style="text-align: center; margin-top: 50px;">
                 <a href="services.html" class="btn btn-outline">
@@ -122,67 +102,15 @@
         </div>
     </section>
 
-    <!-- Inventory Preview Section (CENTRALIZED - 3 CARS) -->
+    <!-- Inventory Preview Section (DYNAMIC) -->
     <section id="inventory-preview">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Premium Inventory</h2>
                 <p class="section-subtitle">Curated selection of luxury vehicles available for immediate purchase or import</p>
             </div>
-            <div class="inventory-grid" style="justify-items: center;">
-                <!-- Car 1 -->
-                <div class="card inventory-card" style="max-width: 320px;">
-                    <img src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mercedes-Benz">
-                    <div class="inventory-content">
-                        <h3>2023 Mercedes-Benz GLE 63 S</h3>
-                        <div class="price">$125,500</div>
-                        <p>Automatic • Petrol • 8,200 miles • AMG Performance Package</p>
-                        <div class="actions">
-                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Mercedes-Benz GLE 63 S')">
-                                <i class="fab fa-whatsapp"></i> Inquiry
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="openModal('inspection','Inspection: 2023 Mercedes-Benz GLE 63 S')">
-                                <i class="fas fa-calendar-check"></i> Inspect
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Car 2 -->
-                <div class="card inventory-card" style="max-width: 320px;">
-                    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Porsche 911">
-                    <div class="inventory-content">
-                        <h3>2022 Porsche 911 Turbo S</h3>
-                        <div class="price">$215,000</div>
-                        <p>Automatic • Petrol • 4,500 miles • Guards Red • Full Carbon</p>
-                        <div class="actions">
-                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2022 Porsche 911 Turbo S')">
-                                <i class="fab fa-whatsapp"></i> Inquiry
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="openModal('inspection','Inspection: 2022 Porsche 911 Turbo S')">
-                                <i class="fas fa-calendar-check"></i> Inspect
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Car 3 -->
-                <div class="card inventory-card" style="max-width: 320px;">
-                    <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Range Rover">
-                    <div class="inventory-content">
-                        <h3>2023 Range Rover Autobiography</h3>
-                        <div class="price">$185,000</div>
-                        <p>Automatic • Diesel • 3,200 miles • Full SVO Package</p>
-                        <div class="actions">
-                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '2023 Range Rover Autobiography')">
-                                <i class="fab fa-whatsapp"></i> Inquiry
-                            </button>
-                            <button class="btn btn-outline btn-sm" onclick="openModal('inspection','Inspection: 2023 Range Rover Autobiography')">
-                                <i class="fas fa-calendar-check"></i> Inspect
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="inventory-grid" style="justify-items: center;" id="featured-cars-grid">
+                <!-- Cars will be loaded here from backend -->
             </div>
             <div style="text-align: center; margin-top: 50px;">
                 <a href="inventory.html" class="btn btn-outline">
@@ -261,5 +189,12 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Load dynamic data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof loadFeaturedCars === 'function') loadFeaturedCars();
+            if (typeof loadFeaturedServices === 'function') loadFeaturedServices();
+        });
+    </script>
 </body>
 </html>
