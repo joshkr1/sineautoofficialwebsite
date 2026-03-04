@@ -61,7 +61,8 @@
         <div class="container">
             <div class="ceo-grid">
                 <div class="ceo-image">
-                    <img src="CEO.jpeg" alt="Olaide Badmus - CEO of Sine Autos">
+                    <!-- DYNAMIC CEO IMAGE: id added for JavaScript update -->
+                    <img id="ceo-image" src="CEO.jpeg" alt="Olaide Badmus - CEO of Sine Autos">
                     <div class="ceo-badge">CEO & FOUNDER</div>
                 </div>
                 <div class="ceo-content">
@@ -207,5 +208,21 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Load CEO image dynamically from backend
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('/api/ceo/image') // or '/api/ceo' and extract image field
+                .then(response => response.json())
+                .then(data => {
+                    if (data.image_url) {
+                        document.getElementById('ceo-image').src = data.image_url;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading CEO image:', error);
+                    // Keep default image (CEO.jpeg)
+                });
+        });
+    </script>
 </body>
 </html>
