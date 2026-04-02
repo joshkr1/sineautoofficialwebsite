@@ -1,3 +1,6 @@
+// ===== CONFIGURATION =====
+const API_BASE_URL = ''; // Empty for relative paths (same domain). Change if backend is on different port.
+
 // ===== LOGO CLICK TO TOP =====
 document.addEventListener('DOMContentLoaded', function() {
     const logo = document.getElementById('logo');
@@ -11,11 +14,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ===== INITIALIZE DATE INPUTS =====
-    // Set today's date for all date inputs
     const today = new Date().toISOString().split('T')[0];
     document.querySelectorAll('input[type="date"]').forEach(input => {
         input.min = today;
     });
+
+    // ===== LOAD DYNAMIC DATA BASED ON PAGE =====
+    // Detect current page and load appropriate data
+    const path = window.location.pathname;
+    
+    if (path.includes('index') || path === '/' || path.endsWith('/')) {
+        // Home page
+        if (typeof loadFeaturedCars === 'function') loadFeaturedCars();
+        if (typeof loadFeaturedServices === 'function') loadFeaturedServices();
+    } else if (path.includes('inventory')) {
+        // Inventory page (loadCars is defined in inventory.html, but we can also call from here)
+        if (typeof loadCars === 'function') loadCars();
+    } else if (path.includes('services')) {
+        // Services page
+        if (typeof loadServices === 'function') loadServices();
+    } else if (path.includes('ceo')) {
+        // CEO page
+        if (typeof loadCEOImage === 'function') loadCEOImage();
+    }
 });
 
 // ===== MOBILE NAVIGATION =====
@@ -37,18 +58,18 @@ const serviceForms = {
             <form id="vehicleForm" onsubmit="submitForm(event, 'vehicle-sales')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <select required>
+                        <select name="brand" required>
                             <option value="">Preferred Brand</option>
                             <option>Mercedes-Benz</option>
                             <option>BMW</option>
@@ -60,12 +81,12 @@ const serviceForms = {
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Model Preference">
+                        <input type="text" name="model" placeholder="Model Preference">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <select required>
+                        <select name="vehicleType" required>
                             <option value="">Vehicle Type</option>
                             <option>SUV</option>
                             <option>Sedan</option>
@@ -75,7 +96,7 @@ const serviceForms = {
                         </select>
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="yearRange" required>
                             <option value="">Year Range</option>
                             <option>2020-2024</option>
                             <option>2015-2019</option>
@@ -85,17 +106,17 @@ const serviceForms = {
                     </div>
                 </div>
                 <div class="form-group full-width">
-                    <select required>
+                    <select name="budget" required>
                         <option value="">Budget Range</option>
-                            <option>Under $30,000</option>
-                            <option>$30,000 - $50,000</option>
-                            <option>$50,000 - $100,000</option>
-                            <option>$100,000 - $200,000</option>
-                            <option>$200,000+</option>
+                        <option>Under $30,000</option>
+                        <option>$30,000 - $50,000</option>
+                        <option>$50,000 - $100,000</option>
+                        <option>$100,000 - $200,000</option>
+                        <option>$200,000+</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Additional requirements (color, features, transmission type, etc.)" rows="4"></textarea>
+                    <textarea name="additionalRequirements" placeholder="Additional requirements (color, features, transmission type, etc.)" rows="4"></textarea>
                 </div>
                 <button class="btn btn-gold" type="submit" style="width: 100%;">
                     <i class="fas fa-car"></i> Submit Vehicle Inquiry
@@ -114,24 +135,24 @@ const serviceForms = {
             <form onsubmit="submitForm(event, 'luxury-sourcing')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Specific Make & Model (e.g., Ferrari SF90)" required>
+                    <input type="text" name="vehicleModel" placeholder="Specific Make & Model (e.g., Ferrari SF90)" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Preferred Year">
+                        <input type="text" name="year" placeholder="Preferred Year">
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="budget" required>
                             <option value="">Budget Range</option>
                             <option>$100,000 - $200,000</option>
                             <option>$200,000 - $500,000</option>
@@ -141,7 +162,7 @@ const serviceForms = {
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Specific requirements (color, trim, features, special requests)" rows="4" required></textarea>
+                    <textarea name="requirements" placeholder="Specific requirements (color, trim, features, special requests)" rows="4" required></textarea>
                 </div>
                 <div class="form-note">
                     <i class="fas fa-info-circle"></i> Our global network specializes in locating rare and exotic vehicles. We'll contact you within 24 hours to discuss your request.
@@ -163,37 +184,37 @@ const serviceForms = {
             <form onsubmit="submitForm(event, 'shipping-logistics')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Pickup Location (City, Country)" required>
+                        <input type="text" name="pickupLocation" placeholder="Pickup Location (City, Country)" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Delivery Location (City, Country)" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="text" placeholder="Vehicle Make" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Vehicle Model" required>
+                        <input type="text" name="deliveryLocation" placeholder="Delivery Location (City, Country)" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Vehicle Year">
+                        <input type="text" name="vehicleMake" placeholder="Vehicle Make" required>
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <input type="text" name="vehicleModel" placeholder="Vehicle Model" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <input type="text" name="vehicleYear" placeholder="Vehicle Year">
+                    </div>
+                    <div class="form-group">
+                        <select name="vehicleCondition" required>
                             <option value="">Vehicle Condition</option>
                             <option>New</option>
                             <option>Used - Excellent</option>
@@ -203,7 +224,7 @@ const serviceForms = {
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Additional notes (timeline, special handling requirements, etc.)" rows="3"></textarea>
+                    <textarea name="additionalNotes" placeholder="Additional notes (timeline, special handling requirements, etc.)" rows="3"></textarea>
                 </div>
                 <div class="form-note">
                     <i class="fas fa-info-circle"></i> A detailed quote will be sent to your email within 2 business hours. We handle all customs clearance and documentation.
@@ -225,17 +246,17 @@ const serviceForms = {
             <form onsubmit="submitForm(event, 'auto-auctions')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="serviceType" required>
                         <option value="">Service Type</option>
                         <option>I want to buy at auction</option>
                         <option>I want to sell at auction</option>
@@ -244,18 +265,18 @@ const serviceForms = {
                     </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Vehicle of Interest (if buying)">
+                    <input type="text" name="vehicleOfInterest" placeholder="Vehicle of Interest (if buying)">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Vehicle Make (if selling)">
+                        <input type="text" name="sellingMake" placeholder="Vehicle Make (if selling)">
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Vehicle Model (if selling)">
+                        <input type="text" name="sellingModel" placeholder="Vehicle Model (if selling)">
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Tell us about your auction needs (budget, timeline, vehicle details, etc.)" rows="4" required></textarea>
+                    <textarea name="details" placeholder="Tell us about your auction needs (budget, timeline, vehicle details, etc.)" rows="4" required></textarea>
                 </div>
                 <div class="form-note">
                     <i class="fas fa-calendar"></i> Upcoming Auction: Luxury & Exotic Vehicle Auction - November 15-17, 2024. Contact us for exclusive access.
@@ -277,21 +298,21 @@ const serviceForms = {
             <form onsubmit="submitForm(event, 'car-rentals')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Pickup Location" required>
+                        <input type="text" name="pickupLocation" placeholder="Pickup Location" required>
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="duration" required>
                             <option value="">Rental Duration</option>
                             <option>Daily (1-3 days)</option>
                             <option>Weekly (4-7 days)</option>
@@ -302,14 +323,14 @@ const serviceForms = {
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="date" placeholder="Start Date" required>
+                        <input type="date" name="startDate" placeholder="Start Date" required>
                     </div>
                     <div class="form-group">
-                        <input type="date" placeholder="End Date" required>
+                        <input type="date" name="endDate" placeholder="End Date" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="vehiclePreference" required>
                         <option value="">Vehicle Preference</option>
                         <option>Luxury Sedan (Mercedes S-Class, BMW 7 Series)</option>
                         <option>Premium SUV (Range Rover, Mercedes GLE)</option>
@@ -319,7 +340,7 @@ const serviceForms = {
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Additional requirements (special occasions, specific features needed, etc.)" rows="3"></textarea>
+                    <textarea name="additionalRequirements" placeholder="Additional requirements (special occasions, specific features needed, etc.)" rows="3"></textarea>
                 </div>
                 <button class="btn btn-gold" type="submit" style="width: 100%;">
                     <i class="fas fa-key"></i> Request Rental Quote
@@ -338,17 +359,17 @@ const serviceForms = {
             <form onsubmit="submitForm(event, 'concierge-service')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="serviceType" required>
                         <option value="">Primary Service Needed</option>
                         <option>Vehicle Purchase Management</option>
                         <option>Maintenance & Service Management</option>
@@ -358,10 +379,10 @@ const serviceForms = {
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Tell us about your automotive needs, current vehicles, and what you're looking to achieve" rows="4" required></textarea>
+                    <textarea name="description" placeholder="Tell us about your automotive needs, current vehicles, and what you're looking to achieve" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Current Vehicles (make/model/year)">
+                    <input type="text" name="currentVehicles" placeholder="Current Vehicles (make/model/year)">
                 </div>
                 <div class="form-note">
                     <i class="fas fa-crown"></i> Our concierge service includes vehicle sourcing, maintenance scheduling, insurance coordination, and complete lifestyle management.
@@ -383,17 +404,17 @@ const serviceForms = {
             <form onsubmit="submitForm(event, 'general')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="serviceInterest" required>
                         <option value="">Service Interest</option>
                         <option>Vehicle Sales</option>
                         <option>Luxury Sourcing</option>
@@ -405,7 +426,7 @@ const serviceForms = {
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Tell us how we can assist you..." rows="4" required></textarea>
+                    <textarea name="message" placeholder="Tell us how we can assist you..." rows="4" required></textarea>
                 </div>
                 <button class="btn btn-gold" type="submit" style="width: 100%;">
                     <i class="fas fa-paper-plane"></i> Send Message
@@ -453,21 +474,21 @@ function openModal(type, title) {
             <form onsubmit="submitForm(event, 'inspection')">
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" name="fullName" placeholder="Full Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Email Address">
+                    <input type="email" name="email" placeholder="Email Address">
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <input type="date" placeholder="Preferred Date" required>
+                        <input type="date" name="preferredDate" placeholder="Preferred Date" required>
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="preferredTime" required>
                             <option value="">Preferred Time</option>
                             <option>Morning (9 AM - 12 PM)</option>
                             <option>Afternoon (1 PM - 4 PM)</option>
@@ -476,7 +497,7 @@ function openModal(type, title) {
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Any specific questions or requests for the inspection..." rows="3"></textarea>
+                    <textarea name="questions" placeholder="Any specific questions or requests for the inspection..." rows="3"></textarea>
                 </div>
                 <button class="btn btn-gold" type="submit" style="width: 100%;">
                     <i class="fas fa-calendar-check"></i> Schedule Inspection
@@ -501,24 +522,97 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-function submitForm(event, formType) {
+// Helper to serialize form data
+function getFormData(form) {
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+    return data;
+}
+
+// Submit form to backend API
+async function submitFormToAPI(endpoint, data) {
+    try {
+        const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const result = await response.json();
+        return { success: true, data: result };
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        return { success: false, error: error.message };
+    }
+}
+
+// Updated submitForm to use backend
+async function submitForm(event, formType) {
     event.preventDefault();
     
-    const name = event.target.querySelector('input[type="text"]')?.value || 'Customer';
-    const phone = event.target.querySelector('input[type="tel"]')?.value || 'N/A';
+    const form = event.target;
+    const formData = getFormData(form);
     
-    let successMessage = `Thank you, ${name}! Your request has been submitted. We will contact you at ${phone} within 24 hours.`;
+    // Add form type to data
+    formData.formType = formType;
     
-    if (formType === 'shipping-logistics') {
-        successMessage = `Thank you, ${name}! Your shipping quote request has been submitted. A detailed quote will be sent to your email within 2 business hours.`;
+    // Determine endpoint based on form type
+    let endpoint = '/api/contact';
+    if (formType === 'inspection') {
+        endpoint = '/api/inspections';
+    } else if (formType === 'vehicle-sales') {
+        endpoint = '/api/sales-inquiries';
+    } else if (formType === 'shipping-logistics') {
+        endpoint = '/api/shipping-quotes';
     } else if (formType === 'car-rentals') {
-        successMessage = `Thank you, ${name}! Your rental request has been submitted. Our rental team will contact you within 2 hours to confirm availability and pricing.`;
+        endpoint = '/api/rentals';
     } else if (formType === 'luxury-sourcing') {
-        successMessage = `Thank you, ${name}! Your luxury vehicle search request has been submitted. Our sourcing specialists will contact you within 24 hours to discuss your requirements.`;
+        endpoint = '/api/luxury-sourcing';
+    } else if (formType === 'auto-auctions') {
+        endpoint = '/api/auctions';
+    } else if (formType === 'concierge-service') {
+        endpoint = '/api/concierge';
     }
     
-    alert(successMessage);
-    closeModal();
+    // Show loading state on button
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+    submitBtn.disabled = true;
+    
+    // Submit to backend
+    const result = await submitFormToAPI(endpoint, formData);
+    
+    if (result.success) {
+        // Show success message
+        let successMessage = `Thank you, ${formData.fullName || formData.name || 'Customer'}! Your request has been submitted. We will contact you within 24 hours.`;
+        
+        if (formType === 'shipping-logistics') {
+            successMessage = `Thank you, ${formData.fullName}! Your shipping quote request has been submitted. A detailed quote will be sent to your email within 2 business hours.`;
+        } else if (formType === 'car-rentals') {
+            successMessage = `Thank you, ${formData.fullName}! Your rental request has been submitted. Our rental team will contact you within 2 hours to confirm availability and pricing.`;
+        } else if (formType === 'luxury-sourcing') {
+            successMessage = `Thank you, ${formData.fullName}! Your luxury vehicle search request has been submitted. Our sourcing specialists will contact you within 24 hours.`;
+        }
+        
+        alert(successMessage);
+        closeModal();
+    } else {
+        // Show error message
+        alert('Sorry, there was an error submitting your request. Please try again or contact us directly.');
+        // Restore button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
 }
 
 // ===== LOAD MORE VEHICLES =====
@@ -581,5 +675,99 @@ window.onclick = function(event) {
     const modal = document.getElementById('modal');
     if (event.target === modal) {
         closeModal();
+    }
+}
+
+// ===== BACKEND DATA LOADING FUNCTIONS =====
+
+// Load featured cars for homepage
+async function loadFeaturedCars() {
+    const container = document.getElementById('featured-cars-grid');
+    if (!container) return;
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/cars?limit=3`); // Adjust endpoint as needed
+        const cars = await response.json();
+        
+        if (!cars.length) {
+            container.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No featured vehicles available.</p>';
+            return;
+        }
+        
+        let html = '';
+        cars.forEach(car => {
+            html += `
+                <div class="card inventory-card" style="max-width: 320px;">
+                    <img src="${car.image_url || 'https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}" alt="${car.make} ${car.model}">
+                    <div class="inventory-content">
+                        <h3>${car.year} ${car.make} ${car.model}</h3>
+                        <div class="price">$${Number(car.price).toLocaleString()}</div>
+                        <p>${car.transmission || 'Auto'} • ${car.fuel || 'Petrol'} • ${car.mileage?.toLocaleString() || '0'} miles</p>
+                        <div class="actions">
+                            <button class="btn btn-gold btn-sm" onclick="openServiceModal('vehicle-sales', '${car.year} ${car.make} ${car.model}')">
+                                <i class="fab fa-whatsapp"></i> Inquiry
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="openModal('inspection','Inspection: ${car.year} ${car.make} ${car.model}')">
+                                <i class="fas fa-calendar-check"></i> Inspect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    } catch (error) {
+        console.error('Error loading featured cars:', error);
+        container.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Unable to load vehicles. Please try again later.</p>';
+    }
+}
+
+// Load featured services for homepage
+async function loadFeaturedServices() {
+    const container = document.getElementById('featured-services-grid');
+    if (!container) return;
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/services?limit=3`);
+        const services = await response.json();
+        
+        if (!services.length) {
+            container.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">No services available.</p>';
+            return;
+        }
+        
+        let html = '';
+        services.forEach(service => {
+            html += `
+                <div class="card service-card" onclick="window.location.href='services.html#${service.slug || service.id}'">
+                    <div style="font-size: 40px; color: var(--gold); margin-bottom: 20px;">
+                        <i class="fas ${service.icon || 'fa-car'}"></i>
+                    </div>
+                    <h3>${service.title}</h3>
+                    <p style="color: var(--muted);">${service.short_description || ''}</p>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+    } catch (error) {
+        console.error('Error loading featured services:', error);
+        container.innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Unable to load services.</p>';
+    }
+}
+
+// Load CEO image (used in ceo.html)
+async function loadCEOImage() {
+    const ceoImage = document.getElementById('ceo-image');
+    if (!ceoImage) return;
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/ceo/image`);
+        const data = await response.json();
+        if (data.image_url) {
+            ceoImage.src = data.image_url;
+        }
+    } catch (error) {
+        console.error('Error loading CEO image:', error);
+        // Keep default
     }
 }
