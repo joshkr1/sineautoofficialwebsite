@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>SINE AUTOS | Vintage to Modern — Your Automotive Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="description" content="Sine Autos connects you to exceptional vehicles worldwide — from vintage classics to modern luxury. Vehicle sales, shipping, rentals, auctions and more.">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,7 +53,7 @@
                 <h2>Vintage to Modern — Your Automotive Hub</h2>
                 <p>At Sine Autos, we connect you to exceptional vehicles from timeless classics to modern luxury. Whether you're buying, selling, shipping, renting, or bidding at auction, we deliver a seamless automotive experience built on trust, quality, and global reach.</p>
                 <button class="btn btn-gold" onclick="openModal('general')">
-                    <i class="fas fa-paper-plane"></i>Contact Us
+                    <i class="fas fa-paper-plane"></i> Contact Us
                 </button>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 <p class="section-subtitle">End-to-end automotive solutions with global reach and local expertise</p>
             </div>
             <div class="services-grid" id="featured-services-grid">
-                <!-- Services will be loaded here from backend -->
+                <!-- Services loaded from backend -->
             </div>
             <div style="text-align: center; margin-top: 50px;">
                 <a href="services.html" class="btn btn-outline">
@@ -110,11 +110,11 @@
                 <p class="section-subtitle">Curated selection of luxury vehicles available for immediate purchase or import</p>
             </div>
             <div class="inventory-grid" style="justify-items: center;" id="featured-cars-grid">
-                <!-- Cars will be loaded here from backend -->
+                <!-- Cars loaded from backend -->
             </div>
             <div style="text-align: center; margin-top: 50px;">
                 <a href="inventory.html" class="btn btn-outline">
-                    <i class="fas fa-car"></i> View Full Inventory (20+ Cars)
+                    <i class="fas fa-car"></i> View Full Inventory
                 </a>
             </div>
         </div>
@@ -131,7 +131,7 @@
                     <i class="fas fa-map-marker-alt"></i> 49, Ogba Road, Agege Lagos
                 </p>
                 <p style="margin-top: 10px;">Connecting you to exceptional vehicles with global reach and trusted service.</p>
-                
+
                 <div class="social-media">
                     <a href="https://facebook.com" target="_blank" class="social-icon" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
@@ -149,7 +149,7 @@
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
-                
+
                 <div class="footer-contact">
                     <a href="tel:+1234567890">
                         <i class="fas fa-phone"></i> +1 (234) 567-890
@@ -161,19 +161,18 @@
                         <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                 </div>
-                
+
                 <div style="margin: 40px 0;">
-                    <button class="btn btn-gold" onclick="openModal('general')" style="margin: 0 10px;">
+                    <a href="inventory.html" class="btn btn-gold" style="margin: 0 10px;">
                         <i class="fas fa-car"></i> Browse Inventory
-                    </button>
+                    </a>
                     <button class="btn btn-outline" onclick="openServiceModal('shipping-logistics')" style="margin: 0 10px;">
                         <i class="fas fa-globe"></i> Import Inquiry
                     </button>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 SINE AUTOS. All rights reserved.</p>
-                <p>Built with excellence by CCAWSC</p>
+                <p>&copy; 2025 SINE AUTOS. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -182,15 +181,12 @@
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="close" onclick="closeModal()">&times;</button>
-            <div id="modalContent">
-                <!-- Dynamic content will be inserted here -->
-            </div>
+            <div id="modalContent"></div>
         </div>
     </div>
 
     <script src="script.js"></script>
     <script>
-        // Load dynamic data on page load
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof loadFeaturedCars === 'function') loadFeaturedCars();
             if (typeof loadFeaturedServices === 'function') loadFeaturedServices();
