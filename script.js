@@ -1,5 +1,5 @@
 // ===== CONFIGURATION =====
-const API_BASE_URL = ''; // Empty for relative paths (same domain). Change if backend is on different port.
+const API_BASE_URL = 'https://sineautoofficialwebsite-production.up.railway.app';
 
 // ===== LOGO CLICK TO TOP =====
 document.addEventListener('DOMContentLoaded', function() {
