@@ -1,22 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
-
-class User(UserMixin, db.Model):
-    __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
-    is_admin = db.Column(db.Boolean, default=False)
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
 
 class Car(db.Model):
     __tablename__ = 'cars'
@@ -44,8 +28,8 @@ class Service(db.Model):
     slug = db.Column(db.String(100), unique=True)
     description = db.Column(db.Text)
     short_description = db.Column(db.String(200))
-    icon = db.Column(db.String(50))  # Font Awesome icon class
-    features_left = db.Column(db.JSON)  # List of strings
+    icon = db.Column(db.String(50))
+    features_left = db.Column(db.JSON)
     features_right = db.Column(db.JSON)
     left_title = db.Column(db.String(100))
     right_title = db.Column(db.String(100))
@@ -59,7 +43,7 @@ class CEO(db.Model):
     name = db.Column(db.String(100))
     title = db.Column(db.String(100))
     image_url = db.Column(db.String(255))
-    bio_paragraphs = db.Column(db.JSON)  # List of strings
+    bio_paragraphs = db.Column(db.JSON)
     quote = db.Column(db.Text)
 
 class ContactInfo(db.Model):
@@ -83,12 +67,12 @@ class Message(db.Model):
     phone = db.Column(db.String(50))
     service_interest = db.Column(db.String(100))
     message = db.Column(db.Text)
-    form_type = db.Column(db.String(50))  # e.g., 'general', 'vehicle-sales'
+    form_type = db.Column(db.String(50))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
 class Inquiry(db.Model):
     __tablename__ = 'inquiries'
     id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(50))  # vehicle-sales, luxury-sourcing, etc.
-    data = db.Column(db.JSON)  # Store all form fields as JSON
+    type = db.Column(db.String(50))
+    data = db.Column(db.JSON)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
