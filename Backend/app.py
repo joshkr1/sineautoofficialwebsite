@@ -3,19 +3,21 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from config import Config
 from models import db, Car, Service, CEO, ContactInfo, Message, Inquiry
-from sqlalchemy import func
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-CORS(app)  # Enable CORS for development (remove in production if not needed)
+CORS(app)
 
 # -------------------- API Routes --------------------
 
 @app.route('/api/cars', methods=['GET'])
 def get_cars():
     limit = request.args.get('limit', default=None, type=int)
+    featured = request.args.get('featured', default=None)
     query = Car.query.filter_by(status='available')
+    if featured == 'true':
+        query = query.filter_by(featured=True)
     if limit:
         query = query.limit(limit)
     cars = query.all()
@@ -33,6 +35,7 @@ def get_cars():
         'type': c.type,
         'color': c.color,
         'location': c.location,
+        'status': c.status,
         'featured': c.featured
     } for c in cars])
 
@@ -59,7 +62,10 @@ def get_car(car_id):
 @app.route('/api/services', methods=['GET'])
 def get_services():
     limit = request.args.get('limit', default=None, type=int)
+    featured = request.args.get('featured', default=None)
     query = Service.query
+    if featured == 'true':
+        query = query.filter_by(featured=True)
     if limit:
         query = query.limit(limit)
     services = query.all()
@@ -78,6 +84,25 @@ def get_services():
         'button_icon': s.button_icon,
         'featured': s.featured
     } for s in services])
+
+@app.route('/api/services/<string:slug>', methods=['GET'])
+def get_service(slug):
+    service = Service.query.filter_by(slug=slug).first_or_404()
+    return jsonify({
+        'id': service.id,
+        'title': service.title,
+        'slug': service.slug,
+        'description': service.description,
+        'short_description': service.short_description,
+        'icon': service.icon,
+        'features_left': service.features_left,
+        'features_right': service.features_right,
+        'left_title': service.left_title,
+        'right_title': service.right_title,
+        'button_text': service.button_text,
+        'button_icon': service.button_icon,
+        'featured': service.featured
+    })
 
 @app.route('/api/ceo', methods=['GET'])
 def get_ceo():
@@ -118,10 +143,11 @@ def get_contact_info():
         }
     })
 
-# Form submission endpoints
 @app.route('/api/contact', methods=['POST'])
 def submit_contact():
     data = request.get_json()
+    if not data or not data.get('fullName') or not data.get('email') or not data.get('message'):
+        return jsonify({'error': 'fullName, email, and message are required'}), 400
     message = Message(
         name=data.get('fullName'),
         email=data.get('email'),
@@ -132,31 +158,15 @@ def submit_contact():
     )
     db.session.add(message)
     db.session.commit()
-    return jsonify({'status': 'success', 'id': message.id})
+    return jsonify({'status': 'success', 'id': message.id}), 201
 
-@app.route('/api/sales-inquiries', methods=['POST'])
-def submit_sales_inquiry():
+@app.route('/api/vehicle-sales', methods=['POST'])
+def submit_vehicle_sales():
     data = request.get_json()
     inquiry = Inquiry(type='vehicle-sales', data=data)
     db.session.add(inquiry)
     db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
-
-@app.route('/api/shipping-quotes', methods=['POST'])
-def submit_shipping_quote():
-    data = request.get_json()
-    inquiry = Inquiry(type='shipping-logistics', data=data)
-    db.session.add(inquiry)
-    db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
-
-@app.route('/api/rentals', methods=['POST'])
-def submit_rental():
-    data = request.get_json()
-    inquiry = Inquiry(type='car-rentals', data=data)
-    db.session.add(inquiry)
-    db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
 
 @app.route('/api/luxury-sourcing', methods=['POST'])
 def submit_luxury_sourcing():
@@ -164,7 +174,15 @@ def submit_luxury_sourcing():
     inquiry = Inquiry(type='luxury-sourcing', data=data)
     db.session.add(inquiry)
     db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
+
+@app.route('/api/rentals', methods=['POST'])
+def submit_rental():
+    data = request.get_json()
+    inquiry = Inquiry(type='car-rentals', data=data)
+    db.session.add(inquiry)
+    db.session.commit()
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
 
 @app.route('/api/auctions', methods=['POST'])
 def submit_auction():
@@ -172,7 +190,7 @@ def submit_auction():
     inquiry = Inquiry(type='auto-auctions', data=data)
     db.session.add(inquiry)
     db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
 
 @app.route('/api/concierge', methods=['POST'])
 def submit_concierge():
@@ -180,7 +198,7 @@ def submit_concierge():
     inquiry = Inquiry(type='concierge-service', data=data)
     db.session.add(inquiry)
     db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
 
 @app.route('/api/inspections', methods=['POST'])
 def submit_inspection():
@@ -188,15 +206,19 @@ def submit_inspection():
     inquiry = Inquiry(type='inspection', data=data)
     db.session.add(inquiry)
     db.session.commit()
-    return jsonify({'status': 'success', 'id': inquiry.id})
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
 
-# Health check
+@app.route('/api/shipping', methods=['POST'])
+def submit_shipping():
+    data = request.get_json()
+    inquiry = Inquiry(type='shipping', data=data)
+    db.session.add(inquiry)
+    db.session.commit()
+    return jsonify({'status': 'success', 'id': inquiry.id}), 201
+
 @app.route('/api/health', methods=['GET'])
 def health():
     return jsonify({'status': 'ok'})
-
-# -------------------- Admin routes (optional) --------------------
-# You can add protected admin routes here using Flask-Login
 
 if __name__ == '__main__':
     app.run(debug=True)
